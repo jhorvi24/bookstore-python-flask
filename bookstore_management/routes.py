@@ -3,12 +3,21 @@ from flask import render_template, request, redirect, url_for, flash, session
 from bookstore_management.forms import PurchaseBookForm, RegisterForm, LoginForm
 from bookstore_management.models import Books, Users
 from flask_login import login_user, logout_user, login_required, current_user
+import boto3
+ 
 
+
+#Cognito configuration
+USER_POOL_ID = 'us-east-1_93g070eZC'
+APP_CLIENT_ID = '187sh2q1h8m30g3uv4p28cis2p'
+REGION = 'us-east-1'
+
+cognito = boto3.client('cognito-idp', region_name=REGION)
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('index.html')
+    return render_template('index2.html')
 
 @app.route('/catalog', methods=['GET', 'POST'])
 def catalog():
@@ -56,6 +65,21 @@ def register():
         db.session.add(created_user)
         db.session.commit()
         login_user(created_user)
+        try:
+            response = cognito.sign_up(
+                ClientId=COGNITO_CLIENT_ID,
+                Username=form.username.data,
+                Password=form.password1.data,
+                UserAttributes=[
+                    {
+                        'Name': 'email',
+                        'Value': form.email.data
+                    }
+                ]
+            )
+        except cognito_client.exceptions.UsernameExistsException:
+            flash('Username already exists!', category='danger')
+            return redirect(url_for('register'))
         
         flash('User created successfully! You are now logged in as {create_user.username}', category='success')
         return redirect(url_for('catalog'))
