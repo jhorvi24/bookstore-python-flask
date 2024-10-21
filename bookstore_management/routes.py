@@ -54,7 +54,7 @@ def register():
         db.session.commit()
         login_user(created_user)        
         
-        flash('User created successfully! You are now logged in as {create_user.username}', category='success')
+        flash(f'User created successfully! You are now logged in as {created_user.username}', category='success')
         return redirect(url_for('catalog'))
     if form.errors != {}: #If there are not errors from the validations
         for err_msg in form.errors.values():

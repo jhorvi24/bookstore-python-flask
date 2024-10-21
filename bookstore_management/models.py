@@ -7,6 +7,7 @@ class Books(db.Model):
     title = db.Column(db.String(100))
     author = db.Column(db.String(100))
     description = db.Column(db.String(1000))
+    image_url = db.Column(db.String(1000))
     amount = db.Column(db.Integer)
     price = db.Column(db.Float)
 
@@ -15,6 +16,7 @@ def load_user(user_id):
     return Users.query.get(int(user_id))   
 
 class Users(db.Model, UserMixin):
+    __tablename__ = 'Users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True)
     password_hash = db.Column(db.String(100))
