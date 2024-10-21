@@ -2,6 +2,7 @@ from bookstore_management import db, login_manager
 from flask_login import UserMixin
 
 class Books(db.Model):
+    __tablename__ = 'Books'
     isbn = db.Column(db.String(10), primary_key=True)
     title = db.Column(db.String(100))
     author = db.Column(db.String(100))

@@ -7,13 +7,6 @@ import boto3
  
 
 
-#Cognito configuration
-USER_POOL_ID = 'us-east-1_93g070eZC'
-APP_CLIENT_ID = '187sh2q1h8m30g3uv4p28cis2p'
-REGION = 'us-east-1'
-
-cognito = boto3.client('cognito-idp', region_name=REGION)
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -43,12 +36,7 @@ def catalog():
     
     if request.method == 'GET': #if the request method is GET, the form was not submitted and the user wants to view the catalog
                 
-        books = Books.query.all() #query the Books table and retrieve all books
-        print(session)
-        print(type(session))
-        print("The type of books is: ")
-        print(type(books))
-        print(books)
+        books = Books.query.all() #query the Books table and retrieve all books       
         
         return render_template('catalog.html', purchaseForm=purchaseForm, books=books) #render the catalog template and pass the books variable to it
 
@@ -64,22 +52,7 @@ def register():
         print(type(created_user))
         db.session.add(created_user)
         db.session.commit()
-        login_user(created_user)
-        try:
-            response = cognito.sign_up(
-                ClientId=COGNITO_CLIENT_ID,
-                Username=form.username.data,
-                Password=form.password1.data,
-                UserAttributes=[
-                    {
-                        'Name': 'email',
-                        'Value': form.email.data
-                    }
-                ]
-            )
-        except cognito_client.exceptions.UsernameExistsException:
-            flash('Username already exists!', category='danger')
-            return redirect(url_for('register'))
+        login_user(created_user)        
         
         flash('User created successfully! You are now logged in as {create_user.username}', category='success')
         return redirect(url_for('catalog'))

@@ -69,8 +69,8 @@ h1, h2, h3 {
 }
 
 .btn-primary {
-  background-color: #e63946;
-  border-color: #e63946;
+  background-color: #252525;
+  border-color: #f9f9f9;
   transition: all 0.3s ease;
 }
 
@@ -79,6 +79,12 @@ h1, h2, h3 {
   border-color: #c62e3a;
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust this value to control space above the button */
 }
 
 .category-grid {
