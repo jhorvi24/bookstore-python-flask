@@ -27,7 +27,6 @@ rds_user = response['Parameters'][3]['Value']
 
 
 app.config['SECRET_KEY'] = 'secret'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:Test!2024@databasesbookstore.cz0i248ggya9.us-east-1.rds.amazonaws.com:3306/bookstore_db'
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{rds_user}:{rds_password}@{rds_host}:3306/{rds_database}'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
