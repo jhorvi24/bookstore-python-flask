@@ -1,73 +1,87 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 
-{% block title%}
+{% block title %}
     Home Page
-{% endblock %} 
+{% endblock %}
 
-{% block content %}
+{%block content%}
 
-     <!-- Header-->
-     <header class="bg-dark py-5">   
-               
-    </header>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol xmlns="http://www.w3.org/2000/svg" id="cart-outline" fill="currentColor" viewBox="-8 0 32 32">
-      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="quality" fill="currentColor" viewBox="-8 0 32 32">
-        <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
-        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
-      </symbol>
-    </svg> 
+<body>   
+            <!--section welcome-->
+            <section id="inicio" class="hero">
 
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12 text-center">
+                            <h1 class="display-1 fw-bold text-white mb-4">Bienvenidos a la Librería El Mundo de Las Letras</h1>
+                            <p class="lead text-white mb-5">Descubre historias fascinantes y conocimientos infinitos en nuestra librería.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-
-    <div class="container text-center text-light">
-      <div class="row">
-        <div class="col">
-          <div class="container py-4">
-            <div class="h-50">
-              <img class="img-fluid rounded"  src="{{ url_for('static', filename='assets/img/bookstore.jpg')}}" alt="..." />
+    <section id="catalogo" class="book-categories">
+        <div class="container">
+            
+            <div class="category-grid">
+                <div class="category-item">
+                    <img src= "{{ url_for('static', filename='assets/img/books.jpg')}}" alt="Libros variados" class="category-image">
+                   
+                    <h3>Ficción y No Ficción</h3>
+                </div>
+                <div class="category-item">
+                    <img src="{{ url_for('static', filename='assets/img/bebe.jpg')}}" alt="Libros infantiles" class="category-image">
+                    
+                    <h3>Infantil y Juvenil</h3>
+                </div>
+                <div class="category-item">
+                    <img src="{{ url_for('static', filename='assets/img/historia.jpg')}}" alt="Libros de historia" class="category-image">
+                    
+                    <h3>Historia y Ciencias</h3>
+                </div>
             </div>
-          </div>
-          
+            <p class="catalog-description">
+                Ofrecemos una amplia variedad de libros que abarcan desde novelas de ficción clásicas hasta obras contemporáneas, junto con una selección diversa de libros de no ficción que incluyen biografía, ensayos, libros de historia, ciencia y autoayuda.
+            </p>
+            <div class="button-wrapper">
+            <a href="{{ url_for('catalog')}}" class="btn btn-primary btn-lg">Explora nuestro catálogo</a>
+            </div>
         </div>
-        <div class="col">
-          <h1 class="display-4 fw-bolder">Welcome to the Knowledge BookStore</h1>
-          <p class="lead fw-normal text-white-50 mb-0">The best bookstore in the World</p> 
+    </section>
 
-         
-          <a href="{{ url_for('catalog')}}" class="btn btn-secondary mt-4 mb-4">Shop Books</a>
-          
-          <div class="icon-box-content text-center">
-            <h3 class="card-title text-center text-light">Free delivery</h3>
-            <p>Consectetur adipi elit lorem ipsum dolor sit amet.</p>
-          </div>
-          
-          <svg class="cart-outline">
-            <use xlink:href="#cart-outline" />
-          </svg>
-
-          <div class="icon-box-content text-center">
-            <h3 class="card-title text-center text-light">Quality guarantee</h3>
-            <p>Dolor sit amet orem ipsu mcons ectetur adipi elit.</p>
-          </div>
-          <svg class="quality">
-            <use xlink:href="#quality" />
-          </svg>
-          
-          
-          
-
+    <section id="sobre-nosotros" class="about-us">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-content">
+                <img src="{{ url_for('static', filename='assets/img/man.jpg')}}" alt="Fundador Alejandro" class="about-image">
+                
+                <p>
+                    Fundada por Alejandro, un apasionado de los libros desde su infancia. Después de años de trabajar en la industria editorial, decidió seguir su sueño de abrir su propia librería. Con determinación y visión, Alejandro transformó un antiguo edificio en el corazón de la ciudad en un refugio para los amantes de la lectura. Ahora quiere empezar con un nuevo mercado y es la venta online.
+                </p>
+            </div>
         </div>
-       
-      </div>
-    </div>
+    </section>
 
-    
-    
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-info">
+                <img src="{{ url_for('static', filename='assets/img/Coffee-Shop.png')}}" alt="Nuestra tienda" class="contact-image">
+                
+                <div class="contact-details">
+                    <p>Cra 128 #44-53<br>Medellín, COL<br>Tel: +57-12345678</p>
+                    <h3>Horario</h3>
+                    <p>Semana: 7:00am - 6:00pm<br>Sábados: 7:00am - 7:00pm<br>Cerrado los domingos</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
- 
-
-
-
+    <footer>
+        <div class="container">
+            <p>&copy; 2024, El mundo de las letras. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
 {% endblock %}

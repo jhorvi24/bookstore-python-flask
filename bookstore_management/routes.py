@@ -10,7 +10,7 @@ import boto3
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 @app.route('/catalog', methods=['GET', 'POST'])
 def catalog():
