@@ -3,7 +3,7 @@
 # Script to create and populate the database.
 # Check the create-db.log file after running it to verify successful execution.
 #
-mysql --user=root --password="Test!2024" --verbose < /home/ec2-user/bookstore-python-flask/databases/sql/db.sql > db.log
+mysql --user=root --password="Test!2024" --verbose < /bookstore-python-flask/databases/sql/db.sql > db.log
 
 echo
 echo "Create Database script completed."
